@@ -1,0 +1,32 @@
+{
+  "name": "desktime",
+  "version": "1.0.1",
+  "description": "Desktime CLI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shajanjp/desktime-cli.git"
+  },
+  "bin": {
+    "desktime": "./index.js"
+  },
+  "keywords": [
+    "today",
+    "cli",
+    "desktime",
+    "monitor",
+    "dashboard"
+  ],
+  "author": "Shajan Jacob <shajanjp@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shajanjp/desktime-cli/issues"
+  },
+  "homepage": "https://github.com/shajanjp/desktime-cli#readme",
+  "dependencies": {
+    "yargs": "^11.0.0"
+  }
+}
