@@ -36,30 +36,34 @@ const argv = require('yargs')
 if (argv.help) {
 	console.log('Goto https://desktime.com/app/api to get the desktime API key.');
 }
+
 if (argv.config) {
 	if (!argv.key || argv.key=="") {
-		return console.log("Please specify the key.");
+		console.log('Goto https://desktime.com/app/api to get the desktime API key.');
+		return console.log("Please specify the key using --key option.");
 	} else {
-		fs.writeFile('desktime.conf', argv.key, (err) => {
+		fs.writeFile('.desktime.conf', argv.key, (err) => {
 			if (err) throw err;
 			console.log('Success!');
 		});
 	}
 }
 
-if (argv.sample) {
-	fs.readFile('desktime.conf', (err, apiKey) => {
-		if (err) throw err;
-		https.get(getdesktimeUrl(apiKey), res => {
-			res.setEncoding("utf8");
-			let body = "";
-			res.on("data", data => {
-				body += data;
-			});
-			res.on("end", () => {
-				body = JSON.parse(body);
-				console.log(body);
-			});
+fs.readFile('.desktime.conf', (err, apiKey) => {
+	if (err) {
+		console.log('Goto https://desktime.com/app/api to get the desktime API key.');
+		return console.log("Please specify the key using --key option.");
+	} ;
+	https.get(getdesktimeUrl(apiKey), res => {
+		res.setEncoding("utf8");
+		let body = "";
+		res.on("data", data => {
+			body += data;
 		});
+		res.on("end", () => {
+			body = JSON.parse(body);
+				// console.log(body);
+				makeDashboard(body);
+			});
 	});
-}
+});
