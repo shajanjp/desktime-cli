@@ -8,6 +8,17 @@ function getdesktimeUrl(apiKey){
 	return `https://desktime.com/api/v2/json/employee?apiKey=${apiKey}`;
 }
 
+function makeDashboard(dtData){
+	let conversation = `Hi ${chalk.greenBright(dtData.name.split(' ')[0])}, You are ${chalk.greenBright(parseInt(dtData.productivity))}${chalk.greenBright('%')} productive today and you may leave by ${chalk.greenBright(getExpectedLeavingTime(dtData.atWorkTime))}`;
+	console.log(conversation);
+} 
+
+function getExpectedLeavingTime(atWorkTime){
+	let now = moment();
+	let workRemaining = (32400 - atWorkTime);
+	return now.add(workRemaining, 'seconds').format('LTS');
+}
+
 const argv = require('yargs')
 .usage('Usage : desktime --key=YOUR_DESKTIME_API_KEY')
 .command('count', 'Count the lines in a file')
