@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 var fs = require('fs');
 var https = require('https');
+const chalk = require('chalk');
+const moment = require('moment');
 
 function getdesktimeUrl(apiKey){
 	return `https://desktime.com/api/v2/json/employee?apiKey=${apiKey}`;
