@@ -1,6 +1,6 @@
 {
   "name": "desktime",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Desktime CLI",
   "main": "index.js",
   "scripts": {
