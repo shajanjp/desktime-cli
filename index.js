@@ -3,6 +3,7 @@ var fs = require('fs');
 var https = require('https');
 const chalk = require('chalk');
 const moment = require('moment');
+const HOME_PATH = require('os').homedir(); 
 
 function getdesktimeUrl(apiKey){
 	return `https://desktime.com/api/v2/json/employee?apiKey=${apiKey}`;
@@ -49,7 +50,7 @@ if (argv.config) {
 	}
 }
 
-fs.readFile('.desktime.conf', (err, apiKey) => {
+fs.readFile(`${HOME_PATH}/.desktime.conf`, (err, apiKey) => {
 	if (err) {
 		console.log('Goto https://desktime.com/app/api to get the desktime API key.');
 		return console.log("Please specify the key using --key option.");
